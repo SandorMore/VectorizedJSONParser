@@ -1,6 +1,7 @@
 #include <iostream>
 #include "src/info.hpp"
 #define DEBUG
+
 int main(int argc, char** argv)
 {
 
