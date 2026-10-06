@@ -76,11 +76,10 @@ inline Features detect() {
     f.popcnt = l1.ecx & (1u << 23);
     f.pclmul = l1.ecx & (1u << 1);
 
-    // AVX-hez: OSXSAVE + az OS tényleg menti az YMM állapotot
     const bool osxsave = l1.ecx & (1u << 27);
     uint64_t xcr0 = osxsave ? xgetbv0() : 0;
-    const bool ymm_ok = (xcr0 & 0x6) == 0x6;           // XMM + YMM
-    const bool zmm_ok = ymm_ok && (xcr0 & 0xE0) == 0xE0; // opmask + ZMM_Hi256 + Hi16_ZMM
+    const bool ymm_ok = (xcr0 & 0x6) == 0x6;
+    const bool zmm_ok = ymm_ok && (xcr0 & 0xE0) == 0xE0;
 
     f.avx = ymm_ok && (l1.ecx & (1u << 28));
 

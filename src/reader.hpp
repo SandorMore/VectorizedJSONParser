@@ -8,7 +8,8 @@
 #include <cstdint>
 #include <cassert>
 
-int read_file(const char* file_name)
+std::fstream& set_input_file(const char* input_file_name)
 {
-    std::fstream fs(file_name, std::ios::binary);
+    return std::fstream(input_file_name);
 }
+
